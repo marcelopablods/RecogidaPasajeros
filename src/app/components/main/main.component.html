@@ -1,0 +1,50 @@
+
+  <div class="row" style="margin-top:2%;">
+    <div class="col-md-4">
+      <div class="form-group">
+        <input type="date" [(ngModel)]="fecha" class="form-control" (change)="getGuia($event.target.value)"/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <select id="cbGuia" class="form-control" (change)="getServicio($event.target.value)" >
+
+      </select>
+    </div>
+    
+    <div class="col-md-4">
+      <select id="cbServicio" class="form-control" (change)="getPasajero($event.target.value) ">
+
+      </select>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:8%;">
+    <div class="col-md-12">
+      <table class="table table-hover table-condensed table-bordered">
+        <thead>
+          <tr style="background-color:#034586; color:white">
+            <th>Pax</th>
+            <th>No Pax</th>
+            <th>Idioma</th>
+            <th>Re</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr 
+            class="tableTr"
+            *ngFor="let pasajero of pasajeros" 
+            [routerLink]="['/servicioDetalle', pasajero.idOpeServicioDetalle]" 
+            (click)="guardarDatos( pasajero.esRecogida, pasajero.recogidaObs)">
+            <td>{{pasajero.pasajero}}</td>
+            <td>{{pasajero.cantidad}}</td>
+            <td>{{pasajero.idioma}}</td>
+            <td *ngIf="pasajero.esRecogida"> <label>Si</label> </td>
+            <td *ngIf="!pasajero.esRecogida"> <label>No</label> </td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
